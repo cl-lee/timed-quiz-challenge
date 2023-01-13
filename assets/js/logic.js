@@ -72,14 +72,16 @@ let endScreen = document.querySelector("#end-screen");
     // function to loop through and render the question sets
     function renderQuestions() {
 
+        // insert an ordered list for each question
+            let ol = document.createElement("ol");
+            choices.appendChild(ol);
+
         // for loop
         for (let i = 0; i < questions.length; i++) {
             
             document.querySelector("#question-title").textContent = questions[i].question;
             
-            // insert an ordered list for each question
-            let ol = document.createElement("ol");
-            choices.appendChild(ol);
+
 
             // for loop for rendering the choices 
             // for (let j = 0; j < 3; j++) {
