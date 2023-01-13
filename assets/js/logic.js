@@ -74,8 +74,17 @@ let endScreen = document.querySelector("#end-screen");
             
             document.querySelector("#question-title") = questions[i].question;
             
-            
-               
+            // insert an ordered list for each question
+            let ol = document.createElement("ol");
+            choices.appendChild(ol);
+
+            // for loop for rendering the choices 
+            for (let choice = 0; choice < 3; choice++) {
+                
+                
+
+            }
+
         }
             
 
