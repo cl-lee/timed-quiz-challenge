@@ -35,7 +35,9 @@
 
             // function to loop through each question and answers
                 // for loop
-                
+
+
+
 
 // - [ ] Questions contain buttons for each answer
 
@@ -57,3 +59,18 @@
             // endScreen.setAttribute("class", "");
 
             // localStorage
+
+
+// questions and answers
+let questions = [
+    {question: "question 1", choices: ["1.", "2.", "3.", "4."], correctAnswer: 1},
+    {question: "question 2?", choices: ["2-1.", "2.", "3.", "4."], correctAnswer: 0},
+    {question: "question 3?", choices: ["3-1.", "2.", "3.", "4."], correctAnswer: 3},
+    {question: "question 4?", choices: ["4-1.", "2.", "3.", "4."], correctAnswer: 1},
+    {question: "question 5?", choices: ["5-1.", "2.", "3.", "4."], correctAnswer: 2},
+    {question: "question 6?", choices: ["6-1.", "2.", "3.", "4."], correctAnswer: 1},
+    {question: "question 7?", choices: ["7-1.", "2.", "3.", "4."], correctAnswer: 0},
+    {question: "question 8?", choices: ["8-1.", "2.", "3.", "4."], correctAnswer: 2},
+    {question: "question 9?", choices: ["9-1.", "2.", "3.", "4."], correctAnswer: 1},
+    {question: "question 10?", choices: ["10-1.", "2.", "3.", "4."], correctAnswer: 3},
+]
