@@ -1,42 +1,90 @@
-// *define elements used in this page
+// questions and answers
+let questions = [
+    {question: "question 1", choices: ["1.", "2.", "3.", "4."], correctAnswer: 1},
+    {question: "question 2", choices: ["2-1.", "2.", "3.", "4."], correctAnswer: 0},
+    {question: "question 3", choices: ["3-1.", "2.", "3.", "4."], correctAnswer: 3},
+    {question: "question 4", choices: ["4-1.", "2.", "3.", "4."], correctAnswer: 1},
+    {question: "question 5", choices: ["5-1.", "2.", "3.", "4."], correctAnswer: 2},
+    {question: "question 6", choices: ["6-1.", "2.", "3.", "4."], correctAnswer: 1},
+    {question: "question 7", choices: ["7-1.", "2.", "3.", "4."], correctAnswer: 0},
+    {question: "question 8", choices: ["8-1.", "2.", "3.", "4."], correctAnswer: 2},
+    {question: "question 9", choices: ["9-1.", "2.", "3.", "4."], correctAnswer: 1},
+    {question: "question 10", choices: ["10-1.", "2.", "3.", "4."], correctAnswer: 3},
+]
+
+// define elements used in this page
 let contentContainer = document.querySelector(".wrapper");
 let startScreen = document.querySelector("#start-screen");
 let questionsScreen = document.querySelector("#questions");
 let endScreen = document.querySelector("#end-screen");
 
-// - [ ]  A start button that when clicked a timer starts and the first question appears.
+// Start quiz function (activates when the "Start Quiz" button is clicked on)
+   
+    // declare the timer element: 
+    timerEL = document.querySelector('#time');
+    // define time left 
+    let timeLeft = 91;
     
     // Event listener: click on "start quiz" button;
-        // 1) timer starts
-    
-        // declare the timer element: 
-        // timerEL = document.getElementByID('time')
+    startScreen.addEventListener("click", function(event) {
+        
+        if(event.target.matches("button")) {
+        
+            // clear start-screen
+            startScreen.setAttribute("class", "hide");
 
-        // define time left 
-        // let timeLeft = 90;
-    
-        // timer: countdown function
-        // let timeInterval = setInterval(function() {
+            // calls function to loop through each question and answers
+                                    
+            // timer: countdown function
+            let timeInterval = setInterval(function() {
 
-            // subtract from time left
-            // timeLeft--;
+            // timer starts, subtract from time left
+            timeLeft--;
+
+            // if wrong answer, subtract (x) amount of time from timeLeft
+
 
             // display the time left
-            // timerEL.textContent = timeLeft
-            // }, 1000);
-        
-        // 2) first question appears & render questions
+            timerEL.textContent = timeLeft
+            }, 1000);
 
-            // clear start-screen
-            // startScreen.setAttribute("class", "hide");
-            
-            // display id: questions instead
-            // questions.setAttribute("class", "");
+        }
 
-            // function to loop through each question and answers
+    })
+    
+    // function to clear the start screen and display the questions
+    function quizStart() {
+
+        // display #questions instead of #start-screen
+        questions.setAttribute("class", "");
+
+        // call function to loop through and render questions and answers
+
+    }
+
+    // Eventlistener: when answer is clicked, provide feedback for previous question and go to the next question
+
+
+
+    // function to loop through and render the question sets
+    function renderQuestions() {
+
+        // for loop
+        for (let i = 0; i < questions.length; i++) {
+            
+            document.querySelector("#question-title") = questions[i].question;
             
             
-            //   - [ ] When answer is clicked, the next question appears
+               
+        }
+            
+
+
+    }
+
+
+                     
+            // When answer is clicked, the next question appears
             // if user has clicked on a correct answer, go to the next question
             // addEventListener
             
@@ -45,15 +93,10 @@ let endScreen = document.querySelector("#end-screen");
             
             // - [ ] Questions contain buttons for each answer
             // display each choice as a button
-            // for loop
-            // for (let i = 0; i < questions.length; i++) {
-                
-                
-            // }
-            
 
 
 
+    // provide feedback for answers
 
 
 
@@ -76,16 +119,3 @@ let endScreen = document.querySelector("#end-screen");
             // localStorage
 
 
-// questions and answers
-let questions = [
-    {question: "question 1", choices: ["1.", "2.", "3.", "4."], correctAnswer: 1},
-    {question: "question 2", choices: ["2-1.", "2.", "3.", "4."], correctAnswer: 0},
-    {question: "question 3", choices: ["3-1.", "2.", "3.", "4."], correctAnswer: 3},
-    {question: "question 4", choices: ["4-1.", "2.", "3.", "4."], correctAnswer: 1},
-    {question: "question 5", choices: ["5-1.", "2.", "3.", "4."], correctAnswer: 2},
-    {question: "question 6", choices: ["6-1.", "2.", "3.", "4."], correctAnswer: 1},
-    {question: "question 7", choices: ["7-1.", "2.", "3.", "4."], correctAnswer: 0},
-    {question: "question 8", choices: ["8-1.", "2.", "3.", "4."], correctAnswer: 2},
-    {question: "question 9", choices: ["9-1.", "2.", "3.", "4."], correctAnswer: 1},
-    {question: "question 10", choices: ["10-1.", "2.", "3.", "4."], correctAnswer: 3},
-]
