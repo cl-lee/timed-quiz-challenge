@@ -34,9 +34,12 @@ let endScreen = document.querySelector("#end-screen");
             startScreen.setAttribute("class", "hide");
 
             // calls function to loop through each question and answers
-                                    
+            renderQuestions();
+            
             // timer: countdown function
-            let timeInterval = setInterval(function() {
+            // let timeInterval = 
+            
+            setInterval(function() {
 
             // timer starts, subtract from time left
             timeLeft--;
@@ -79,10 +82,14 @@ let endScreen = document.querySelector("#end-screen");
             choices.appendChild(ol);
 
             // for loop for rendering the choices 
-            for (let choice = 0; choice < 3; choice++) {
+            for (let j = 0; j < 3; j++) {
                 
-                
+                let choice = questions[i].choices[j];
 
+                let li = document.createElement("li");
+                li.textContent = choice;
+                ol.appendChild(li);
+             
             }
 
         }
