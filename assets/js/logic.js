@@ -88,6 +88,10 @@ let endScreen = document.querySelector("#end-screen");
 
                 let li = document.createElement("li");
                 li.textContent = choice;
+                
+                let button = document.createElement("button");
+                li.appendChild(button);
+                                
                 ol.appendChild(li);
              
             }
