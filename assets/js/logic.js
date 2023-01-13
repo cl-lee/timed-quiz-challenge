@@ -34,7 +34,7 @@ let endScreen = document.querySelector("#end-screen");
             startScreen.setAttribute("class", "hide");
 
             // calls function to loop through each question and answers
-            renderQuestions();
+            quizStart();
             
             // timer: countdown function
             // let timeInterval = 
@@ -59,10 +59,10 @@ let endScreen = document.querySelector("#end-screen");
     function quizStart() {
 
         // display #questions instead of #start-screen
-        questions.setAttribute("class", "");
+        questionsScreen.setAttribute("class", "");
 
         // call function to loop through and render questions and answers
-
+        renderQuestions();
     }
 
     // Eventlistener: when answer is clicked, provide feedback for previous question and go to the next question
@@ -75,26 +75,26 @@ let endScreen = document.querySelector("#end-screen");
         // for loop
         for (let i = 0; i < questions.length; i++) {
             
-            document.querySelector("#question-title") = questions[i].question;
+            document.querySelector("#question-title").textContent = questions[i].question;
             
             // insert an ordered list for each question
             let ol = document.createElement("ol");
             choices.appendChild(ol);
 
             // for loop for rendering the choices 
-            for (let j = 0; j < 3; j++) {
+            // for (let j = 0; j < 3; j++) {
                 
-                let choice = questions[i].choices[j];
+            //     let choice = questions[i].choices[j];
 
-                let li = document.createElement("li");
-                li.textContent = choice;
+            //     let li = document.createElement("li");
+            //     li.textContent = choice;
                 
-                let button = document.createElement("button");
-                li.appendChild(button);
+            //     let button = document.createElement("button");
+            //     li.appendChild(button);
                                 
-                ol.appendChild(li);
+            //     ol.appendChild(li);
              
-            }
+            // }
 
         }
             
