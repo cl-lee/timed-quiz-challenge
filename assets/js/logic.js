@@ -25,13 +25,17 @@
             // timerEL.textContent = timeLeft
             // }, 1000);
         
-        // 2) first question appears
+        // 2) first question appears & render questions
 
             // clear start-screen
             // startScreen.setAttribute("class", "hide");
             
             // display id: questions instead
             // questions.setAttribute("class", "");
+
+            // function to loop through each question and answers
+                // for loop
+                
 
 // - [ ] Questions contain buttons for each answer
 
@@ -51,3 +55,5 @@
 //  - [ ]  When the game ends, it should display their score and give the user the ability to save their initials and their score
             // display end screen
             // endScreen.setAttribute("class", "");
+
+            // localStorage
