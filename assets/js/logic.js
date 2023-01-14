@@ -105,13 +105,13 @@ function feedbackTimer() {
       //subtract from time left
       feedbackTimeLeft--;
   
-      //if statement where when we reach 0 time left,
+      //when 0 time left
       if (feedbackTimeLeft === 0) {
         
-        // we call display message
+        // end the interval
         clearInterval(feedbackTimeInterval);
         
-        // end the interval
+        // hide the feedback
         feedbackEL.setAttribute("class", "hide");
   
       }
