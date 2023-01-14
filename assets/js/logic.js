@@ -53,6 +53,7 @@ startScreen.addEventListener("click", function(event) {
         choice = questions[questionsIndex].choices[i];
         let button = document.createElement("button");
         button.textContent = choice;
+        button.setAttribute("data-index",i);
         ul.appendChild(button);
         }
     }
@@ -71,6 +72,7 @@ function renderQuestions() {questionsScreen.addEventListener("click", function(e
             choice = questions[questionsIndex].choices[i];
             let button = document.createElement("button");
             button.textContent = choice;
+            button.setAttribute("data-index",i);
             ul.appendChild(button);
         }
     }
