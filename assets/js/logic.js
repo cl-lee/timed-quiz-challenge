@@ -19,62 +19,90 @@ let questionsScreen = document.querySelector("#questions");
 let endScreen = document.querySelector("#end-screen");
 let choicesEL = document.querySelector("#choices");
 
-// Start quiz function (activates when the "Start Quiz" button is clicked on)
-   
-    // declare the timer element: 
-    timerEL = document.querySelector('#time');
-    // define time left 
-    let timeLeft = 91;
-    
-    // Event listener: click on "start quiz" button;
-    startScreen.addEventListener("click", function(event) {
+// temp
+
+// Event listener for clicking on buttons;
+startScreen.addEventListener("click", function(event) {
+
+    if(event.target.matches("button") && startScreen.getAttribute != "hide") {
         
-        if(event.target.matches("button")) {
+        // clear start-screen
+        startScreen.setAttribute("class", "hide");
+        // render questions screen
+        questionsScreen.setAttribute("class", "");
+        // set countdown timer
+        timerEL = document.querySelector('#time');
+        let timeLeft = 90;    
         
-            // clear start-screen
-            startScreen.setAttribute("class", "hide");
-
-            // --test codes--
-            questionsScreen.setAttribute("class", "");
-
-            document.querySelector("#question-title").textContent = questions[0].question;
-
-            let ol = document.createElement("ol");
-            choicesEL.appendChild(ol);
-
-            for (let i = 0; i < questions[0].choices.length; i++) {
-                
-                let choice = questions[0].choices[i];
-
-
-                let button = document.createElement("button");
-                button.textContent = choice;
-
-                ol.appendChild(button);
-                
-            }
-
-
-            // calls function to loop through each question and answers
-            // quizStart();
-            
-            // timer: countdown function
-            // let timeInterval = 
-            setInterval(function() {
-
+        // let timeInterval = 
+        setInterval(function() {
             // timer starts, subtract from time left
             timeLeft--;
-
             // if wrong answer, subtract (x) amount of time from timeLeft
-
 
             // display the time left
             timerEL.textContent = timeLeft
-            }, 1000);
+        }, 1000);
 
-        }
 
+        // notes to self: let questionsIndex = 0
+        document.querySelector("#question-title").textContent = questions[0].question;
+        let button = document.createElement("button");
+        button.textContent = "next question";
+        document.querySelector("#question-title").appendChild(button);
+
+        renderQuestions();
+    }
+})
+        
+// render the questions and choices    
+
+function renderQuestions() {questionsScreen.addEventListener("click", function(event) {
+    if(event.target.matches("button")) {
+        let questionsIndex = 0;
+        questionsIndex++;
+    document.querySelector("#question-title").textContent = questions[questionsIndex].question;
+    let button = document.createElement("button");
+    button.textContent = "next question";
+    document.querySelector("#question-title").appendChild(button);
+    }
+
+    // let ul = document.createElement("ul");         
+    // choicesEL.appendChild(ul);
+    //     for (let i = 0; i < questions[0].choices.length; j++) {
+    //         choice = questions[0].choices[j];
+    //         let button = document.createElement("button");
+    //         button.textContent = choice;
+    //         ul.appendChild(button);
+    //     }
     })
+}
+    
+    // render questions
+    
+
+    
+    // function renderQuestions () {
+
+    // document.querySelector("#question-title").textContent = questions[0].question;
+        
+    // let ul = document.createElement("ul");
+                    
+    // choicesEL.appendChild(ul);
+        
+    //     for (let i = 0; i < questions[0].choices.length; i++) {
+            
+    //         let choice = questions[0].choices[i];
+    //         let button = document.createElement("button");
+    //         button.textContent = choice;
+    //         ul.appendChild(button);
+            
+    //     }
+        
+        // calls function to loop through each question and answers
+        // quizStart();
+        
+
     
     // // function to clear the start screen and display the questions
     // function quizStart() {
