@@ -76,87 +76,8 @@ function renderQuestions() {questionsScreen.addEventListener("click", function(e
             ul.appendChild(button);
         }
     }
-})}
-    
-    
-    // function renderQuestions () {
-
-    // document.querySelector("#question-title").textContent = questions[0].question;
-        
-    // let ul = document.createElement("ul");
-                    
-    // choicesEL.appendChild(ul);
-        
-    //     for (let i = 0; i < questions[0].choices.length; i++) {
-            
-    //         let choice = questions[0].choices[i];
-    //         let button = document.createElement("button");
-    //         button.textContent = choice;
-    //         ul.appendChild(button);
-            
-    //     }
-        
-        // calls function to loop through each question and answers
-        // quizStart();
-        
-
-    
-    // // function to clear the start screen and display the questions
-    // function quizStart() {
-
-    //     // display #questions instead of #start-screen
-    //     questionsScreen.setAttribute("class", "");
-
-    //     // call function to loop through and render questions and answers
-    //     renderQuestions();
-    // }
-
-    // // Eventlistener: when answer is clicked, provide feedback for previous question and go to the next question
-
-
-
-    // // function to loop through and render the question sets
-    // function renderQuestions() {
-
-    //     // insert an ordered list for question choices
-    //         let ol = document.createElement("ol");
-    //         choices.appendChild(ol);
-
-    //     // When answer is clicked, the next question appears
-    //     questionsScreen.addEventListener("click", function(event) {
-    //         if(event.target.matches("button")) {
-    //             i++;               
-    //         }
-    //     })
-
-    //     // for loop
-    //     for (let i = 0; i < questions.length; i++) {
-            
-    //             document.querySelector("#question-title").textContent = questions[i].question;
-
-    //         // for loop for rendering the choices 
-    //         for (let j = 0; j < questions[i].choices.length; j++) {
-                
-    //             let choice = questions[i].choices[j];
-
-    //             let li = document.createElement("li");
-    //             li.textContent = choice;
-                
-    //             let button = document.createElement("button");
-    //             li.appendChild(button);
-                                
-    //             ol.appendChild(li);
-             
-    //         }
-
-    //     }
-            
-
-
-    // }
-
-
-                     
+})}  
+                   
 
 
 
