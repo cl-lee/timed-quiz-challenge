@@ -46,6 +46,13 @@ startScreen.addEventListener("click", function(event) {
 
             // display the time left
             timerEL.textContent = timeLeft
+
+            if (timeLeft === 0) {
+
+                clearInterval(setInterval);
+
+            }
+
         }, 1000);
         // renders the first question
         document.querySelector("#question-title").textContent = questions[questionsIndex].question;
@@ -116,7 +123,7 @@ function feedbackTimer() {
   
       }
   
-        },700);
+        },900);
   }
 
 
