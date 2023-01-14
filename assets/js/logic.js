@@ -1,16 +1,17 @@
 // questions and answers
 let questions = [
-    {question: "question 1", choices: ["a", "b", "c", "d"], correctAnswer: 1},
-    {question: "question 2", choices: ["a", "b", "c", "d"], correctAnswer: 0},
-    {question: "question 3", choices: ["a", "b", "c", "d"], correctAnswer: 3},
-    {question: "question 4", choices: ["a", "b", "c", "d"], correctAnswer: 1},
-    {question: "question 5", choices: ["a", "b", "c", "d"], correctAnswer: 2},
-    {question: "question 6", choices: ["a", "b", "c", "d"], correctAnswer: 1},
-    {question: "question 7", choices: ["a", "b", "c", "d"], correctAnswer: 0},
-    {question: "question 8", choices: ["a", "b", "c", "d"], correctAnswer: 2},
-    {question: "question 9", choices: ["a", "b", "c", "d"], correctAnswer: 1},
-    {question: "question 10", choices: ["a", "b", "c", "d"], correctAnswer: 3},
+    {question: "question 1", choices: ["a1", "b", "c", "d"], correctAnswer: 1},
+    {question: "question 2", choices: ["a2", "b", "c", "d"], correctAnswer: 0},
+    {question: "question 3", choices: ["a3", "b", "c", "d"], correctAnswer: 3},
+    {question: "question 4", choices: ["a4", "b", "c", "d"], correctAnswer: 1},
+    {question: "question 5", choices: ["a5", "b", "c", "d"], correctAnswer: 2},
+    {question: "question 6", choices: ["a6", "b", "c", "d"], correctAnswer: 1},
+    {question: "question 7", choices: ["a7", "b", "c", "d"], correctAnswer: 0},
+    {question: "question 8", choices: ["a8", "b", "c", "d"], correctAnswer: 2},
+    {question: "question 9", choices: ["a9", "b", "c", "d"], correctAnswer: 1},
+    {question: "question 10", choices: ["a10", "b", "c", "d"], correctAnswer: 3},
 ]
+
 
 // define elements used in this page
 let contentContainer = document.querySelector(".wrapper");
@@ -20,14 +21,18 @@ let endScreen = document.querySelector("#end-screen");
 let choicesEL = document.querySelector("#choices");
 
 
-// Event listener for clicking on buttons;
+// codes for user interaction
 
 let questionsIndex = 0;
 
-startScreen.addEventListener("click", function(event) {
+// create an unordered list for containing the question choices
+let ul = document.createElement("ul");         
+choicesEL.appendChild(ul)
+let ulEL = document.querySelector("ul");
 
+// Event listener for clicking on buttons;
+startScreen.addEventListener("click", function(event) {
     if(event.target.matches("button") && startScreen.getAttribute != "hide") {
-        
         // clear start-screen
         startScreen.setAttribute("class", "hide");
         // render questions screen
@@ -35,51 +40,44 @@ startScreen.addEventListener("click", function(event) {
         // set countdown timer
         timerEL = document.querySelector('#time');
         let timeLeft = 90;    
-        
         // let timeInterval = 
         setInterval(function() {
             // timer starts, subtract from time left
             timeLeft--;
             // if wrong answer, subtract (x) amount of time from timeLeft
-
             // display the time left
             timerEL.textContent = timeLeft
         }, 1000);
-
-        // display the first question
+        // renders the first question
         document.querySelector("#question-title").textContent = questions[questionsIndex].question;
+        // render the first question's answers
+        for (let i = 0; i < questions[questionsIndex].choices.length; i++) {
+        choice = questions[questionsIndex].choices[i];
         let button = document.createElement("button");
-        button.textContent = "next question";
-        document.querySelector("#question-title").appendChild(button);
-
-        renderQuestions();
+        button.textContent = choice;
+        ul.appendChild(button);
+        }
     }
 })
-        
+
+renderQuestions();
+
 // render the next questions and choices    
 function renderQuestions() {questionsScreen.addEventListener("click", function(event) {
     if(event.target.matches("button")) {
         questionsIndex++;
         document.querySelector("#question-title").textContent = questions[questionsIndex].question;
-        let button = document.createElement("button");
-        button.textContent = "next question";
-        document.querySelector("#question-title").appendChild(button);
+        ulEL.innerHTML = "";
+
+        for (let i = 0; i < questions[questionsIndex].choices.length; i++) {
+            choice = questions[questionsIndex].choices[i];
+            let button = document.createElement("button");
+            button.textContent = choice;
+            ul.appendChild(button);
+        }
     }
-
-    // let ul = document.createElement("ul");         
-    // choicesEL.appendChild(ul);
-    //     for (let i = 0; i < questions[0].choices.length; j++) {
-    //         choice = questions[0].choices[j];
-    //         let button = document.createElement("button");
-    //         button.textContent = choice;
-    //         ul.appendChild(button);
-    //     }
-    })
-}
+})}
     
-    // render questions
-    
-
     
     // function renderQuestions () {
 
