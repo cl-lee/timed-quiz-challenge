@@ -116,7 +116,7 @@ function feedbackTimer() {
   
       }
   
-        },600);
+        },700);
   }
 
 
