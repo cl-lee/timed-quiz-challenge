@@ -19,9 +19,11 @@ let questionsScreen = document.querySelector("#questions");
 let endScreen = document.querySelector("#end-screen");
 let choicesEL = document.querySelector("#choices");
 
-// temp
 
 // Event listener for clicking on buttons;
+
+let questionsIndex = 0;
+
 startScreen.addEventListener("click", function(event) {
 
     if(event.target.matches("button") && startScreen.getAttribute != "hide") {
@@ -44,9 +46,8 @@ startScreen.addEventListener("click", function(event) {
             timerEL.textContent = timeLeft
         }, 1000);
 
-
-        // notes to self: let questionsIndex = 0
-        document.querySelector("#question-title").textContent = questions[0].question;
+        // display the first question
+        document.querySelector("#question-title").textContent = questions[questionsIndex].question;
         let button = document.createElement("button");
         button.textContent = "next question";
         document.querySelector("#question-title").appendChild(button);
@@ -55,16 +56,14 @@ startScreen.addEventListener("click", function(event) {
     }
 })
         
-// render the questions and choices    
-
+// render the next questions and choices    
 function renderQuestions() {questionsScreen.addEventListener("click", function(event) {
     if(event.target.matches("button")) {
-        let questionsIndex = 0;
         questionsIndex++;
-    document.querySelector("#question-title").textContent = questions[questionsIndex].question;
-    let button = document.createElement("button");
-    button.textContent = "next question";
-    document.querySelector("#question-title").appendChild(button);
+        document.querySelector("#question-title").textContent = questions[questionsIndex].question;
+        let button = document.createElement("button");
+        button.textContent = "next question";
+        document.querySelector("#question-title").appendChild(button);
     }
 
     // let ul = document.createElement("ul");         
