@@ -12,19 +12,17 @@ let questions = [
     {question: "question 10", choices: ["a10", "b", "c", "d"], correctAnswer: 3},
 ]
 
-
-// define elements used in this page
+// define variables used in this page
 let contentContainer = document.querySelector(".wrapper");
 let startScreen = document.querySelector("#start-screen");
 let questionsScreen = document.querySelector("#questions");
 let endScreen = document.querySelector("#end-screen");
 let choicesEL = document.querySelector("#choices");
+let feedbackEL = document.querySelector("#feedback");
+let questionsIndex = 0;
 
 
 // codes for user interaction
-
-let questionsIndex = 0;
-
 // create an unordered list for containing the question choices
 let ul = document.createElement("ul");         
 choicesEL.appendChild(ul)
@@ -77,13 +75,19 @@ function renderQuestions() {questionsScreen.addEventListener("click", function(e
         }
     }
 })}  
-                   
+
+// to verify if answer is correct or wrong:
+
+// insert setAttribute("data-index", i) to choices in render loop
+// if user selected choice.getAttribute matches questions[questionsIndex].correctAnswer,
+//  provide feedback = correct!, 
+//  correct answer is worth 10 points
+
 
 
 
             
-            // map question to "#question-title" in index.html
-            // map choices to "#choices" in index.html
+
             
             // - [ ] Questions contain buttons for each answer
             // display each choice as a button
