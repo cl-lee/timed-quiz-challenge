@@ -31,9 +31,9 @@ let ulEL = document.querySelector("ul");
 // Event listener for clicking on buttons;
 startScreen.addEventListener("click", function(event) {
     if(event.target.matches("button") && startScreen.getAttribute != "hide") {
-        // clear start-screen
+        // hide start-screen
         startScreen.setAttribute("class", "hide");
-        // render questions screen
+        // unhide questions screen
         questionsScreen.setAttribute("class", "");
         // set countdown timer
         timerEL = document.querySelector('#time');
@@ -80,8 +80,18 @@ function renderQuestions() {questionsScreen.addEventListener("click", function(e
 
 // insert setAttribute("data-index", i) to choices in render loop
 // if user selected choice.getAttribute matches questions[questionsIndex].correctAnswer,
-//  provide feedback = correct!, 
+// check how to addEventListener, but for user's selected button
+// return user's selected button?
+
+
+//  provide feedback = correct! or incorrect,
+//  unhide feedbackEL for 1.5s(?)
+//  hide feedbackEL after
+
+
 //  correct answer is worth 10 points
+//  store points in localStorage
+//  += points
 
 
 
