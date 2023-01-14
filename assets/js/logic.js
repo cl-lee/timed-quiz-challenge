@@ -43,6 +43,7 @@ startScreen.addEventListener("click", function(event) {
             // timer starts, subtract from time left
             timeLeft--;
             // if wrong answer, subtract (x) amount of time from timeLeft
+
             // display the time left
             timerEL.textContent = timeLeft
         }, 1000);
@@ -53,7 +54,7 @@ startScreen.addEventListener("click", function(event) {
         choice = questions[questionsIndex].choices[i];
         let button = document.createElement("button");
         button.textContent = choice;
-        button.setAttribute("data-index",i);
+        button.setAttribute("data-index", i);
         ul.appendChild(button);
         }
     }
@@ -72,18 +73,16 @@ function renderQuestions() {questionsScreen.addEventListener("click", function(e
             choice = questions[questionsIndex].choices[i];
             let button = document.createElement("button");
             button.textContent = choice;
-            button.setAttribute("data-index",i);
+            button.setAttribute("data-index", i);
             ul.appendChild(button);
+
+            let userAnswer = event.target.getAttribute("data-index");
         }
     }
 })}  
 
-// to verify if answer is correct or wrong:
-
-// insert setAttribute("data-index", i) to choices in render loop
 // if user selected choice.getAttribute matches questions[questionsIndex].correctAnswer,
-// check how to addEventListener, but for user's selected button
-// return user's selected button?
+
 
 
 //  provide feedback = correct! or incorrect,
