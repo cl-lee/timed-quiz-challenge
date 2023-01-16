@@ -91,61 +91,27 @@ startScreen.addEventListener("click", function(event) {
 
 // function: render feedback
 function feedbackTimer() {
-    let feedbackTimeLeft = 1;
-    let feedbackTimeInterval = setInterval(function () {
-      //subtract from time left
-      feedbackTimeLeft--;
-  
-      //when 0 time left
-      if (feedbackTimeLeft === 0) {
-        
-        // end the interval
-        clearInterval(feedbackTimeInterval);
-        
-        // hide the feedback
-        feedbackEL.setAttribute("class", "hide");
-      }
-  
-    },1000);
+  let feedbackTimeLeft = 1;
+  let feedbackTimeInterval = setInterval(function () {
+    //subtract from time left
+    feedbackTimeLeft--;
+
+    // hides feedback and stop feedback timer after display time is up
+    if (feedbackTimeLeft === 0) {
+      clearInterval(feedbackTimeInterval);
+      feedbackEL.setAttribute("class", "hide");
+    }
+  },1000);
 }
 
-
+// - [ ] The quiz should end when all questions are answered or the timer reaches 0.
 
 //  correct answer is worth 10 points
 //  store points in localStorage
 //  += points
-
-
-
-
-            
-
-            
-            // - [ ] Questions contain buttons for each answer
-            // display each choice as a button
-
-
-
-    // provide feedback for answers
-
-
-
-
-
-
-
-
-//   - [ ] If the answer clicked was incorrect then subtract time from the clock
-            // if wrong answer, subtract (x) amount of time from timeLeft
-            // when timer reaches 0, clear timer
-            // clearInterval(timeInterval)
-
-// - [ ] The quiz should end when all questions are answered or the timer reaches 0.
 
 //  - [ ]  When the game ends, it should display their score and give the user the ability to save their initials and their score
             // display end screen
             // endScreen.setAttribute("class", "");
 
             // localStorage
-
-
