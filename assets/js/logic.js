@@ -1,15 +1,15 @@
 // QUESTION AND ANSWERS SETS
 let questions = [
     {question: "What does 1 + 1 = ?", choices: ["a. 1", "b. 11", "c. 2", "d. 4"], correctAnswer: 2},
-    {question: "What does 2 / 2 = ?", choices: ["a. 2", "b. 1", "c. 0", "d. 4"], correctAnswer: 1},
+    {question: "What does 2 ÷ 2 = ?", choices: ["a. 2", "b. 1", "c. 0", "d. 4"], correctAnswer: 1},
     {question: "John has 10 crates of 100 apples, how many apples does he have?", choices: ["a. 10", "b. 100", "c. 1000", "d. 90"], correctAnswer: 2},
     {question: "Suella had 10 pens, she gave away 3 pens. How many pens does she have left?", choices: ["a. 7", "b. 1", "c. 10", "d. 3"], correctAnswer: 0},
-    {question: "question 5", choices: ["a5", "b", "c", "d"], correctAnswer: 1},
-    {question: "question 6", choices: ["a6", "b", "c", "d"], correctAnswer: 1},
-    {question: "question 7", choices: ["a7", "b", "c", "d"], correctAnswer: 1},
-    {question: "question 8", choices: ["a8", "b", "c", "d"], correctAnswer: 1},
-    {question: "question 9", choices: ["a9", "b", "c", "d"], correctAnswer: 1},
-    {question: "question 10", choices: ["a10", "b", "c", "d"], correctAnswer: 1},
+    {question: "What is 8 ^ 2?", choices: ["a. 16", "b. 10", "c. 6", "d. 64"], correctAnswer: 3},
+    {question: "If a = 36, a + b = 70. What is the value of b?", choices: ["a. 34", "b. 36", "c. 2", "d. 106"], correctAnswer: 0},
+    {question: "Please select the largest result from the following options.", choices: ["a. 10 ÷ 7", "b. 9 ÷ 3", "c. 8 ÷ 4", "d. 11 ÷ 7"], correctAnswer: 1},
+    {question: "What is the approximate value of π?", choices: ["a. 3.14", "b. 4.13", "c. 1.34", "d. 3.41"], correctAnswer: 0},
+    {question: "How many milliseconds are there in a second?", choices: ["a. 10", "b. 100", "c. 1000", "d. 10000"], correctAnswer: 2},
+    {question: "What is the remainder of 12 ÷ 6?", choices: ["a. 2", "b. 0", "c. 1", "d. 6"], correctAnswer: 1},
 ]
 
 // DEFINE VARIABLES
@@ -51,9 +51,6 @@ questionsScreen.addEventListener("click", function(event) {
     // clears the previous questions' choices
     olEL.innerHTML = "";
     
-    // clears feedback for the question preceding the last
-    feedbackEL.setAttribute("class", "hide");
-    
     questionsIndex++;
     renderQuestionSets();
     renderFeedback();
@@ -62,6 +59,8 @@ questionsScreen.addEventListener("click", function(event) {
 
   } else {
       // end quiz after the last question
+      questionsIndex++;
+      renderFeedback();
       endQuiz();
   }
 })
@@ -77,7 +76,7 @@ startScreen.addEventListener("click", function(event) {
       // display the time left
       timerEL.textContent = timeLeft;        
 
-      // stops timer when times up
+      // stops timer when times up or completed all questions
       if (timeLeft <= 0 || questionsScreen.getAttribute("class") === "hide") {
         clearInterval(timerInterval);
         timerEL.textContent = 0;
@@ -102,7 +101,7 @@ function renderQuestionSets() {
 // function: render feedback (and enable penalty)
 function renderFeedback() {
   let userAnswer = parseInt(event.target.getAttribute("data-index"));
-
+  
   // shows feedback for the previous question
   if (questionsIndex != 0) {
   feedbackEL.setAttribute("class", "feedback");
@@ -134,10 +133,10 @@ function feedbackTimer() {
 
 // ends the quiz: hides the questions screen and unhide the end screen
 function endQuiz() {
-    localStorage.setItem("score",timeLeft);
-    questionsScreen.setAttribute("class", "hide");
-    endScreen.setAttribute("class", "");
-    finalScore.textContent = JSON.parse(localStorage.getItem("score"));
+  localStorage.setItem("score",timeLeft);
+  questionsScreen.setAttribute("class", "hide");
+  endScreen.setAttribute("class", "");
+  finalScore.textContent = JSON.parse(localStorage.getItem("score"));
 }
 
 // - [ ] The quiz should end when all questions are answered or the timer reaches 0.
