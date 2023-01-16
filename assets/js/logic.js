@@ -1,6 +1,6 @@
 // questions and answers
 let questions = [
-    {question: "question 1", choices: ["a1", "b", "c", "d"], correctAnswer: 1},
+    {question: "What is 1 + 1?", choices: ["1", "11", "2", "4"], correctAnswer: 3},
     {question: "question 2", choices: ["a2", "b", "c", "d"], correctAnswer: 1},
     {question: "question 3", choices: ["a3", "b", "c", "d"], correctAnswer: 1},
     {question: "question 4", choices: ["a4", "b", "c", "d"], correctAnswer: 1},
@@ -140,9 +140,9 @@ let highScoresList = JSON.parse(localStorage.getItem("highScores"));
 let initials = JSON.parse(localStorage.getItem("userInitials"));
 let score = JSON.parse(localStorage.getItem("score"));
 
-let highScoreEL = {userInitials: initials, userScore: score};
+let highScoreObject = {userInitials: initials, userScore: score};
 
-highScoresList.push(highScoreEL);
+highScoresList.push(highScoreObject);
 
 localStorage.setItem("highScores",JSON.stringify(highScoresList));
 
