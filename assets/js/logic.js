@@ -139,49 +139,21 @@ function endQuiz() {
   endScreen.setAttribute("class", "");
 }
 
-// - [ ] The quiz should end when all questions are answered or the timer reaches 0.
-  // when user clicks on the final question's answer
-    // final question: if questionsIndex > questions.length,
-    // hide questions screen and unhide end screen
-    // show final score from local storage
-
-    
+// end-screen codes
 submitInitials.addEventListener("click", function(event) {
   event.preventDefault();
+  
+  // saves user initials to local storage
   localStorage.setItem("userInitials",JSON.stringify(initialsEL.value.trim()));
+  
+  // redirect to highscores page upon clicking on "submit"
   window.location.href = "./highscores.html";
 
-  // logs current user initial and scores into the highscores array
-  // saves user initals and highscores into the local storage
-let highScoresList = JSON.parse(localStorage.getItem("highScores"));
-
-let initials = JSON.parse(localStorage.getItem("userInitials"));
-let score = JSON.parse(localStorage.getItem("score"));
-
-let highScoreObject = {userInitials: initials, userScore: score};
-
-highScoresList.push(highScoreObject);
-
-localStorage.setItem("highScores",JSON.stringify(highScoresList));
-
+  // logs current user initial and scores into the highscores array, and save into local storage
+  let highScoresList = JSON.parse(localStorage.getItem("highScores"));
+  let initials = JSON.parse(localStorage.getItem("userInitials"));
+  let score = JSON.parse(localStorage.getItem("score"));
+  let highScoreObject = {userInitials: initials, userScore: score};
+  highScoresList.push(highScoreObject);
+  localStorage.setItem("highScores",JSON.stringify(highScoresList));
 })
-
-
-
-// highScores = [{userInitials1, userScore1}, {userInitials2, userScore2}, ...]
-  // (after 1 second?), go to end screen
-
-
-
-
-//  score = timeleft
-//  store points in localStorage
-//  += points
-
-//  - [ ]  When the game ends, it should display their score and give the user the ability to save their initials and their score
-            // display end screen
-            // endScreen.setAttribute("class", "");
-
-            // localStorage
-
-// input actual questions and answers
