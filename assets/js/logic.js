@@ -3,7 +3,7 @@ let questions = [
     {question: "What does 1 + 1 = ?", choices: ["a. 1", "b. 11", "c. 2", "d. 4"], correctAnswer: 2},
     {question: "What does 2 / 2 = ?", choices: ["a. 2", "b. 1", "c. 0", "d. 4"], correctAnswer: 1},
     {question: "John has 10 crates of 100 apples, how many apples does he have?", choices: ["a. 10", "b. 100", "c. 1000", "d. 90"], correctAnswer: 2},
-    {question: "question 4", choices: ["a4", "b", "c", "d"], correctAnswer: 1},
+    {question: "Suella had 10 pens, she gave away 3 pens. How many pens does she have left?", choices: ["a. 7", "b. 1", "c. 10", "d. 3"], correctAnswer: 0},
     {question: "question 5", choices: ["a5", "b", "c", "d"], correctAnswer: 1},
     {question: "question 6", choices: ["a6", "b", "c", "d"], correctAnswer: 1},
     {question: "question 7", choices: ["a7", "b", "c", "d"], correctAnswer: 1},
@@ -45,6 +45,7 @@ startScreen.addEventListener("click", function(event) {
 
 // Events when clicked on choices, 
 questionsScreen.addEventListener("click", function(event) {
+  event.preventDefault();
   if(event.target.matches("button") && questionsIndex < questions.length-1) {
     
     // clears the previous questions' choices
@@ -57,8 +58,10 @@ questionsScreen.addEventListener("click", function(event) {
     renderQuestionSets();
     renderFeedback();
 
-    // end quiz after the last question
+  } else if (!event.target.matches("button")) { 
+
   } else {
+      // end quiz after the last question
       endQuiz();
   }
 })
@@ -96,7 +99,7 @@ function renderQuestionSets() {
   }
 }
 
-// function: feedback (and penalty)
+// function: render feedback (and enable penalty)
 function renderFeedback() {
   let userAnswer = parseInt(event.target.getAttribute("data-index"));
 
