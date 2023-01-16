@@ -70,35 +70,25 @@ contentContainer.addEventListener("click", function(event) {
   }
 })
 
-// set countdown timer
-timerEL = document.querySelector('#time');
-
 // if user clicks on start quiz, countdown timer starts
+timerEL = document.querySelector('#time');
 startScreen.addEventListener("click", function(event) {
   if(event.target.matches("button")) {
-    
-    function quizTimer() {
-      let timerInterval = setInterval(function() {
-          // timer starts, subtract from time left
-          timeLeft--;
+    let timerInterval = setInterval(function() {
+      // timer starts, subtract from time left
+      timeLeft--;
       
-          // display the time left
-          timerEL.textContent = timeLeft;
-
-          if (timeLeft === 0) {
-              clearInterval(timerInterval);
-          }
-      }, 1000);
-    }
-  
-    quizTimer();
-  
+      // display the time left
+      timerEL.textContent = timeLeft;        
+      
+      // stops timer when times up
+      if (timeLeft === 0) {
+        clearInterval(timerInterval);
+      }
+    }, 1000);
   }
 })
 
-//  provide feedback = correct! or incorrect,
-//  unhide feedbackEL for 1.5s(?)
-//  hide feedbackEL after
 // function: render feedback
 function feedbackTimer() {
     let feedbackTimeLeft = 1;
