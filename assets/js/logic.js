@@ -25,7 +25,7 @@ let questionsIndex = 0;
 let timeLeft = 90;
 
 // CODES FOR USER INTERACTION
-// create an unordered list for containing the question choices
+// create an ordered list for containing the question choices
 let ol = document.createElement("ol");         
 choicesEL.appendChild(ol)
 let olEL = document.querySelector("ol");
@@ -77,7 +77,7 @@ startScreen.addEventListener("click", function(event) {
       timerEL.textContent = timeLeft;        
 
       // stops timer when times up or completed all questions
-      if (timeLeft <= 0 || questionsScreen.getAttribute("class") === "hide") {
+      if (timeLeft <= 0 || questionsIndex === questions.length) {
         clearInterval(timerInterval);
         timerEL.textContent = 0;
         endQuiz();
@@ -134,9 +134,9 @@ function feedbackTimer() {
 // ends the quiz: hides the questions screen and unhide the end screen
 function endQuiz() {
   localStorage.setItem("score",timeLeft);
+  finalScore.textContent = timeLeft;
   questionsScreen.setAttribute("class", "hide");
   endScreen.setAttribute("class", "");
-  finalScore.textContent = JSON.parse(localStorage.getItem("score"));
 }
 
 // - [ ] The quiz should end when all questions are answered or the timer reaches 0.
