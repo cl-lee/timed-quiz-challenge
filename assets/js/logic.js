@@ -130,11 +130,13 @@ function endQuiz() {
     
 submitInitials.addEventListener("click", function(event) {
   event.preventDefault();
-  localStorage.setItem("userInitials",initialsEL);
+  localStorage.setItem("userInitials",JSON.stringify(initialsEL.value.trim()));
   window.location.href = "./highscores.html";
 })
 
 
+
+// highScores = [{userInitials1, userScore1}, {userInitials2, userScore2}, ...]
   // (after 1 second?), go to end screen
 
 
