@@ -43,7 +43,7 @@ startScreen.addEventListener("click", function(event) {
   }
 })
 
-// Events when clicked on choices, 
+// Events when clicked on choices
 questionsScreen.addEventListener("click", function(event) {
   event.preventDefault();
   if(event.target.matches("button") && questionsIndex < questions.length-1) {
