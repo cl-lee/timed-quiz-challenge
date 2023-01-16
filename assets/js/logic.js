@@ -32,14 +32,13 @@ let olEL = document.querySelector("ol");
 contentContainer.addEventListener("click", function(event) {
   if(event.target.matches("button")) {
         
-    // hide start-screen, unhide questions screen
-    startScreen.setAttribute("class", "hide");
-    questionsScreen.setAttribute("class", "");
-
-    olEL.innerHTML = "";
-    feedbackEL.setAttribute("class", "hide");
-
-    // codes for rendering the question sets
+  // hide start-screen, unhide questions screen
+  startScreen.setAttribute("class", "hide");
+  questionsScreen.setAttribute("class", "");
+  olEL.innerHTML = "";
+  feedbackEL.setAttribute("class", "hide");
+    
+  // codes for rendering the question sets
     questionsIndex++;
     // renders the first question
     document.querySelector("#question-title").textContent = questions[questionsIndex].question;
@@ -53,21 +52,24 @@ contentContainer.addEventListener("click", function(event) {
     }
 
     let userAnswer = parseInt(event.target.getAttribute("data-index"));
+    console.log("userAnswer = " + userAnswer);
+    console.log(isNaN(userAnswer));
+    
     if (questionsIndex != 0) {
     feedbackEL.setAttribute("class", "feedback");
     }
 
-    if (userAnswer === questions[questionsIndex].correctAnswer) {
+    if(userAnswer === questions[questionsIndex].correctAnswer) {
       feedbackEL.innerHTML = "Correct!";
     } else {
       feedbackEL.innerHTML = "Wrong!"
+      timeLeft -= 10;
     }
 
     feedbackTimer();
   }
 })
 
-// error: if nested inside eventlistener for container and press button, run this function again, so timer runs faster?
 // set countdown timer
 timerEL = document.querySelector('#time');
 
@@ -82,7 +84,6 @@ startScreen.addEventListener("click", function(event) {
       
           // display the time left
           timerEL.textContent = timeLeft;
-          console.log(timeLeft);
 
           if (timeLeft === 0) {
               clearInterval(timerInterval);
@@ -96,33 +97,9 @@ startScreen.addEventListener("click", function(event) {
 })
 
 // if wrong answer, subtract (x) amount of time from timeLeft
-questionsScreen.addEventListener("click", function(event) {
-  if(event.target.matches("button") && userAnswer != questions[questionsIndex].correctAnswer) {
-    timeLeft -= 10;
-    timerEL.textContent = timeLeft;
-    console.log(timeLeft);
-  }
-});
+
 
 // renderQuestions();
-
-// render the next questions and choices    
-function renderQuestions() {questionsScreen.addEventListener("click", function(event) {
-    if(event.target.matches("button")) {
-        // questionsIndex++;
-        // document.querySelector("#question-title").textContent = questions[questionsIndex].question;
-        // olEL.innerHTML = "";
-        // feedbackEL.setAttribute("class", "hide");
-        
-        // for (let i = 0; i < questions[questionsIndex].choices.length; i++) {
-        //     choice = questions[questionsIndex].choices[i];
-        //     let button = document.createElement("button");
-        //     button.textContent = choice;
-        //     button.setAttribute("data-index", i);
-        //     ol.appendChild(button);
-        }
-    }
-)  }
 
 // if user selected choice.getAttribute matches questions[questionsIndex].correctAnswer,
 
