@@ -1,5 +1,5 @@
 let clearHighScore = document.querySelector("#clear");
-let highscoresEL = document.querySelector("#highscores");
+let highScoresEL = document.querySelector("#highscores");
 let highScoresList = JSON.parse(localStorage.getItem("highScores"))
 
 renderHighscores();
@@ -9,7 +9,7 @@ clearHighScore.addEventListener("click", function(event) {
     if(event.target.matches("button")) {
         highScoresList = [];
         localStorage.setItem("highScores",JSON.stringify(highScoresList))
-        highscoresEL.innerHTML = "";
+        highScoresEL.innerHTML = "";
     }
 })
 
@@ -19,5 +19,5 @@ function renderHighscores() {
     let renderScore = highScoresList[i].userInitials + " - " + highScoresList[i].userScore;
     let li = document.createElement("li");
     li.textContent = renderScore;
-    highscoresEL.appendChild(li);
+    highScoresEL.appendChild(li);
 }}
