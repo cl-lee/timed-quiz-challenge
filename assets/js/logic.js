@@ -132,6 +132,20 @@ submitInitials.addEventListener("click", function(event) {
   event.preventDefault();
   localStorage.setItem("userInitials",JSON.stringify(initialsEL.value.trim()));
   window.location.href = "./highscores.html";
+
+  // logs current user initial and scores into the highscores array
+  // saves user initals and highscores into the local storage
+let highScoresList = JSON.parse(localStorage.getItem("highScores"));
+
+let initials = JSON.parse(localStorage.getItem("userInitials"));
+let score = JSON.parse(localStorage.getItem("score"));
+
+let highScoreEL = {userInitials: initials, userScore: score};
+
+highScoresList.push(highScoreEL);
+
+localStorage.setItem("highScores",JSON.stringify(highScoresList));
+
 })
 
 

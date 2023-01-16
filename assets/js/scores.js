@@ -1,24 +1,22 @@
 let clearHighScore = document.querySelector("#clear");
+let highscoresSection = document.querySelector("#highscores");
+let highScoresList = JSON.parse(localStorage.getItem("highScores"))
 
-// saves user initals and highscores into the local storage
-let highScores = JSON.parse(localStorage.getItem("highScores"))
+// renderHighscores();
 
-let initials = JSON.parse(localStorage.getItem("userInitials"));
-let score = JSON.parse(localStorage.getItem("score"));
-
-let highScoreEL = {userInitials: initials, userScore: score};
-
-highScores.push(highScoreEL);
-
-localStorage.setItem("highScores",JSON.stringify(highScores));
-
-// clear high scores
+// clear highscores
 clearHighScore.addEventListener("click", function(event) {
     if(event.target.matches("button")) {
-        for (let i = 0; i < highScores.length; i++) {
-        highScores.pop();
-        }
-
-        localStorage.setItem("highScores",JSON.stringify(highScores));
-}
+        highScoresList = [];
+        localStorage.setItem("highScores",JSON.stringify(highScoresList))
+    //   renderHighscores();
+    }
 })
+
+// render highscores
+// function renderHighscores() {for (let i = 0; i < highScoresList.length; i++) {
+    // let renderScore = highScoresList[i].userInitials + " - " + highScoresList[i].userScore;
+    // let li = document.createElement("li");
+    // li.textContent = renderScore;
+    // highscoresSection.appendChild(li);
+// }}
