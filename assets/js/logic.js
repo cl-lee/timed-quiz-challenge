@@ -19,6 +19,9 @@ let questionsScreen = document.querySelector("#questions");
 let endScreen = document.querySelector("#end-screen");
 let choicesEL = document.querySelector("#choices");
 let feedbackEL = document.querySelector("#feedback");
+let initialsEL = document.querySelector("#initials");
+let finalScore = document.querySelector("#final-score");
+let submitInitials = document.querySelector("#submit");
 let questionsIndex = -1;
 let timeLeft = 90;
 
@@ -110,10 +113,13 @@ function feedbackTimer() {
   },1000);
 }
 
-function endQuiz(){
+// ends the quiz: hides the questions screen and unhide the end screen
+function endQuiz() {
+    localStorage.setItem("score",timeLeft);
     questionsScreen.setAttribute("class", "hide");
     endScreen.setAttribute("class", "");
-  }
+    finalScore.textContent = JSON.parse(localStorage.getItem("score"));
+}
 
 // - [ ] The quiz should end when all questions are answered or the timer reaches 0.
   // when user clicks on the final question's answer
@@ -121,6 +127,9 @@ function endQuiz(){
     // hide questions screen and unhide end screen
     // show final score from local storage
     // when user has clicked on submit, hide feedback, and redirect to highscore screen
+// submitInitials.addEventListener("click", function(event) {
+//   event.preventDefault();
+//   localStorage.setItem("userInitials",initialsEL);
 
 
 
