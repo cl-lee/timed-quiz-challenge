@@ -61,7 +61,7 @@ contentContainer.addEventListener("click", function(event) {
 
     if(userAnswer === questions[questionsIndex].correctAnswer) {
       feedbackEL.innerHTML = "Correct!";
-    } else {
+    } else if (questionsIndex != 0) {
       feedbackEL.innerHTML = "Wrong!"
       timeLeft -= 10;
     }
@@ -95,15 +95,6 @@ startScreen.addEventListener("click", function(event) {
   
   }
 })
-
-// if wrong answer, subtract (x) amount of time from timeLeft
-
-
-// renderQuestions();
-
-// if user selected choice.getAttribute matches questions[questionsIndex].correctAnswer,
-
-
 
 //  provide feedback = correct! or incorrect,
 //  unhide feedbackEL for 1.5s(?)
