@@ -1,6 +1,14 @@
 let clearHighScore = document.querySelector("#clear");
 let highScoresEL = document.querySelector("#highscores");
-let highScoresList = JSON.parse(localStorage.getItem("highScores"))
+
+
+// logs current user initial and scores into the highscores array, and save into local storage
+let highScoresList = JSON.parse(localStorage.getItem("highScores")) || [];
+let initials = JSON.parse(localStorage.getItem("userInitials"));
+let score = JSON.parse(localStorage.getItem("score"));
+let highScoreObject = {userInitials: initials, userScore: score};
+highScoresList.push(highScoreObject);
+localStorage.setItem("highScores",JSON.stringify(highScoresList));
 
 // render highscores
 for (let i = 0; i < highScoresList.length; i++) {
