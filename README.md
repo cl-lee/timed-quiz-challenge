@@ -1,6 +1,6 @@
 # Random Password Generator
 ## Description
-Welcome to my [Timed Quiz Challenge](https://cl-lee.github.io/timed-quiz-challenge/) project! This project's aim to help employees generate a random password through a web application. 
+Welcome to my [Timed Quiz Challenge](https://cl-lee.github.io/timed-quiz-challenge/) repo! This project features a maths quiz challenge.
 
 To support users with different needs, users can determine the following password criteria:
 - Password length between 10 to 64 characters
