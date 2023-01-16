@@ -1,23 +1,15 @@
-# Random Password Generator
+# Timed Quiz Challenge
 ## Description
-Welcome to my [Timed Quiz Challenge](https://cl-lee.github.io/timed-quiz-challenge/) repo! This project features a maths quiz challenge.
+Welcome to my [Timed Quiz Challenge](https://cl-lee.github.io/timed-quiz-challenge/) repo! This is a project for a maths quiz challenge.
 
-To support users with different needs, users can determine the following password criteria:
-- Password length between 10 to 64 characters
-- Four character types:
-    - Lowercase
-    - Uppercase
-    - Numeric
-    - Special characters (!@#$%^, etc.)
-
-After choosing the options, the app will generate a random password based on the selected criteria.
+The challenge features ten mathematical multiple-choice questions. This is a timed quiz; challengers has 90 seconds to attempt the quiz. Each incorrect answer will deduct 10 seconds from the remaining time. Challengers can record their remaining time at the end of the challenge as their score.
 
 ## Prerequisites
 A web browser is required to access the application.
 
 ## Usage
-The application can be accessed through the following URL: https://cl-lee.github.io/random-password-generator/  
-![The Random Password Generator webpage](./assets/landing-page.png)  
+The application can be accessed through the following URL: https://cl-lee.github.io/timed-quiz-challenge/ 
+![The Quiz start page](./assets/landing-page.png)  
 
 ### Generate a password
 - To generate the password, users can click on the "Generate Password" button 
