@@ -126,11 +126,13 @@ function endQuiz() {
     // final question: if questionsIndex > questions.length,
     // hide questions screen and unhide end screen
     // show final score from local storage
-    // when user has clicked on submit, hide feedback, and redirect to highscore screen
-// submitInitials.addEventListener("click", function(event) {
-//   event.preventDefault();
-//   localStorage.setItem("userInitials",initialsEL);
 
+    
+submitInitials.addEventListener("click", function(event) {
+  event.preventDefault();
+  localStorage.setItem("userInitials",initialsEL);
+  window.location.href = "./highscores.html";
+})
 
 
   // (after 1 second?), go to end screen
