@@ -39,8 +39,9 @@ contentContainer.addEventListener("click", function(event) {
   feedbackEL.setAttribute("class", "hide");
     
   // codes for rendering the question sets
-    questionsIndex++;
+  questionsIndex++;
     // renders the first question
+  if (questionsIndex < questions.length) {
     document.querySelector("#question-title").textContent = questions[questionsIndex].question;
     // render the first question's answers
     for (let i = 0; i < questions[questionsIndex].choices.length; i++) {
@@ -52,21 +53,24 @@ contentContainer.addEventListener("click", function(event) {
     }
 
     let userAnswer = parseInt(event.target.getAttribute("data-index"));
-    console.log("userAnswer = " + userAnswer);
-    console.log(isNaN(userAnswer));
-    
+
+    // codes for answer feedback and time penalty
     if (questionsIndex != 0) {
     feedbackEL.setAttribute("class", "feedback");
     }
-
+    
     if(userAnswer === questions[questionsIndex].correctAnswer) {
       feedbackEL.innerHTML = "Correct!";
     } else if (questionsIndex != 0) {
       feedbackEL.innerHTML = "Wrong!"
       timeLeft -= 10;
     }
-
     feedbackTimer();
+   
+  } else {
+      endQuiz();
+    }
+
   }
 })
 
@@ -80,10 +84,12 @@ startScreen.addEventListener("click", function(event) {
       
       // display the time left
       timerEL.textContent = timeLeft;        
-      
+
       // stops timer when times up
-      if (timeLeft === 0) {
+      if (timeLeft <= 0 || questionsScreen.getAttribute("class") === "hide") {
         clearInterval(timerInterval);
+        timerEL.textContent = 0;
+        endQuiz();
       }
     }, 1000);
   }
@@ -104,9 +110,26 @@ function feedbackTimer() {
   },1000);
 }
 
-// - [ ] The quiz should end when all questions are answered or the timer reaches 0.
+function endQuiz(){
+    questionsScreen.setAttribute("class", "hide");
+    endScreen.setAttribute("class", "");
+  }
 
-//  correct answer is worth 10 points
+// - [ ] The quiz should end when all questions are answered or the timer reaches 0.
+  // when user clicks on the final question's answer
+    // final question: if questionsIndex > questions.length,
+    // hide questions screen and unhide end screen
+    // show final score from local storage
+    // when user has clicked on submit, hide feedback, and redirect to highscore screen
+
+
+
+  // (after 1 second?), go to end screen
+
+
+
+
+//  score = timeleft
 //  store points in localStorage
 //  += points
 
@@ -115,3 +138,5 @@ function feedbackTimer() {
             // endScreen.setAttribute("class", "");
 
             // localStorage
+
+// input actual questions and answers
