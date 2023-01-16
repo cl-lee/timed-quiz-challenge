@@ -19,8 +19,8 @@ let questionsScreen = document.querySelector("#questions");
 let endScreen = document.querySelector("#end-screen");
 let choicesEL = document.querySelector("#choices");
 let feedbackEL = document.querySelector("#feedback");
-let questionsIndex = 0;
-
+let questionsIndex = -1;
+let timeLeft = 90;
 
 // codes for user interaction
 // create an unordered list for containing the question choices
@@ -29,74 +29,100 @@ choicesEL.appendChild(ol)
 let olEL = document.querySelector("ol");
 
 // Event listener for clicking on buttons;
-startScreen.addEventListener("click", function(event) {
-    if(event.target.matches("button") && startScreen.getAttribute != "hide") {
-        // hide start-screen
-        startScreen.setAttribute("class", "hide");
-        // unhide questions screen
-        questionsScreen.setAttribute("class", "");
-        // set countdown timer
-        timerEL = document.querySelector('#time');
-        let timeLeft = 90;    
-        // let timeInterval = 
-        setInterval(function() {
-            // timer starts, subtract from time left
-            timeLeft--;
-            // if wrong answer, subtract (x) amount of time from timeLeft
+contentContainer.addEventListener("click", function(event) {
+  if(event.target.matches("button")) {
+        
+    // hide start-screen, unhide questions screen
+    startScreen.setAttribute("class", "hide");
+    questionsScreen.setAttribute("class", "");
 
-            // display the time left
-            timerEL.textContent = timeLeft
+    olEL.innerHTML = "";
+    feedbackEL.setAttribute("class", "hide");
 
-            if (timeLeft === 0) {
-
-                clearInterval(setInterval);
-
-            }
-
-        }, 1000);
-        // renders the first question
-        document.querySelector("#question-title").textContent = questions[questionsIndex].question;
-        // render the first question's answers
-        for (let i = 0; i < questions[questionsIndex].choices.length; i++) {
-        choice = questions[questionsIndex].choices[i];
-        let button = document.createElement("button");
-        button.textContent = choice;
-        button.setAttribute("data-index", i);
-        ol.appendChild(button);
-        }
+    // codes for rendering the question sets
+    questionsIndex++;
+    // renders the first question
+    document.querySelector("#question-title").textContent = questions[questionsIndex].question;
+    // render the first question's answers
+    for (let i = 0; i < questions[questionsIndex].choices.length; i++) {
+    choice = questions[questionsIndex].choices[i];
+    let button = document.createElement("button");
+    button.textContent = choice;
+    button.setAttribute("data-index", i);
+    ol.appendChild(button);
     }
+
+    let userAnswer = parseInt(event.target.getAttribute("data-index"));
+    if (questionsIndex != 0) {
+    feedbackEL.setAttribute("class", "feedback");
+    }
+
+    if (userAnswer === questions[questionsIndex].correctAnswer) {
+      feedbackEL.innerHTML = "Correct!";
+    } else {
+      feedbackEL.innerHTML = "Wrong!"
+    }
+
+    feedbackTimer();
+  }
 })
 
-renderQuestions();
+// error: if nested inside eventlistener for container and press button, run this function again, so timer runs faster?
+// set countdown timer
+timerEL = document.querySelector('#time');
+
+// if user clicks on start quiz, countdown timer starts
+startScreen.addEventListener("click", function(event) {
+  if(event.target.matches("button")) {
+    
+    function quizTimer() {
+      let timerInterval = setInterval(function() {
+          // timer starts, subtract from time left
+          timeLeft--;
+      
+          // display the time left
+          timerEL.textContent = timeLeft;
+          console.log(timeLeft);
+
+          if (timeLeft === 0) {
+              clearInterval(timerInterval);
+          }
+      }, 1000);
+    }
+  
+    quizTimer();
+  
+  }
+})
+
+// if wrong answer, subtract (x) amount of time from timeLeft
+questionsScreen.addEventListener("click", function(event) {
+  if(event.target.matches("button") && userAnswer != questions[questionsIndex].correctAnswer) {
+    timeLeft -= 10;
+    timerEL.textContent = timeLeft;
+    console.log(timeLeft);
+  }
+});
+
+// renderQuestions();
 
 // render the next questions and choices    
 function renderQuestions() {questionsScreen.addEventListener("click", function(event) {
     if(event.target.matches("button")) {
-        questionsIndex++;
-        document.querySelector("#question-title").textContent = questions[questionsIndex].question;
-        olEL.innerHTML = "";
-        feedbackEL.setAttribute("class", "hide")
-
-        for (let i = 0; i < questions[questionsIndex].choices.length; i++) {
-            choice = questions[questionsIndex].choices[i];
-            let button = document.createElement("button");
-            button.textContent = choice;
-            button.setAttribute("data-index", i);
-            ol.appendChild(button);
-
-            let userAnswer = parseInt(event.target.getAttribute("data-index"));
-            feedbackEL.setAttribute("class", "feedback")
-
-            if (userAnswer === questions[questionsIndex].correctAnswer) {
-              feedbackEL.innerHTML = "Correct!";
-            } else {
-              feedbackEL.innerHTML = "Wrong!"
-            }
-
-            feedbackTimer();
+        // questionsIndex++;
+        // document.querySelector("#question-title").textContent = questions[questionsIndex].question;
+        // olEL.innerHTML = "";
+        // feedbackEL.setAttribute("class", "hide");
+        
+        // for (let i = 0; i < questions[questionsIndex].choices.length; i++) {
+        //     choice = questions[questionsIndex].choices[i];
+        //     let button = document.createElement("button");
+        //     button.textContent = choice;
+        //     button.setAttribute("data-index", i);
+        //     ol.appendChild(button);
         }
     }
-})}  
+)  }
 
 // if user selected choice.getAttribute matches questions[questionsIndex].correctAnswer,
 
@@ -120,11 +146,10 @@ function feedbackTimer() {
         
         // hide the feedback
         feedbackEL.setAttribute("class", "hide");
-  
       }
   
-        },900);
-  }
+    },1000);
+}
 
 
 
