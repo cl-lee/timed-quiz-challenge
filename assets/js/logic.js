@@ -1,8 +1,8 @@
-// questions and answers
+// QUESTION AND ANSWERS SETS
 let questions = [
-    {question: "What is 1 + 1?", choices: ["1", "11", "2", "4"], correctAnswer: 3},
-    {question: "question 2", choices: ["a2", "b", "c", "d"], correctAnswer: 1},
-    {question: "question 3", choices: ["a3", "b", "c", "d"], correctAnswer: 1},
+    {question: "What does 1 + 1 = ?", choices: ["a. 1", "b. 11", "c. 2", "d. 4"], correctAnswer: 2},
+    {question: "What does 2 / 2 = ?", choices: ["a. 2", "b. 1", "c. 0", "d. 4"], correctAnswer: 1},
+    {question: "John has 10 crates of 100 apples, how many apples does he have?", choices: ["a. 10", "b. 100", "c. 1000", "d. 90"], correctAnswer: 2},
     {question: "question 4", choices: ["a4", "b", "c", "d"], correctAnswer: 1},
     {question: "question 5", choices: ["a5", "b", "c", "d"], correctAnswer: 1},
     {question: "question 6", choices: ["a6", "b", "c", "d"], correctAnswer: 1},
@@ -12,8 +12,7 @@ let questions = [
     {question: "question 10", choices: ["a10", "b", "c", "d"], correctAnswer: 1},
 ]
 
-// define variables used in this page
-let contentContainer = document.querySelector(".wrapper");
+// DEFINE VARIABLES
 let startScreen = document.querySelector("#start-screen");
 let questionsScreen = document.querySelector("#questions");
 let endScreen = document.querySelector("#end-screen");
@@ -22,62 +21,49 @@ let feedbackEL = document.querySelector("#feedback");
 let initialsEL = document.querySelector("#initials");
 let finalScore = document.querySelector("#final-score");
 let submitInitials = document.querySelector("#submit");
-let questionsIndex = -1;
+let questionsIndex = 0;
 let timeLeft = 90;
 
-// codes for user interaction
+// CODES FOR USER INTERACTION
 // create an unordered list for containing the question choices
 let ol = document.createElement("ol");         
 choicesEL.appendChild(ol)
 let olEL = document.querySelector("ol");
 
-// Event listener for clicking on buttons;
-contentContainer.addEventListener("click", function(event) {
+// Event listener for clicking on the "Start Quiz" button
+startScreen.addEventListener("click", function(event) {
   if(event.target.matches("button")) {
         
-  // hide start-screen, unhide questions screen
-  startScreen.setAttribute("class", "hide");
-  questionsScreen.setAttribute("class", "");
-  olEL.innerHTML = "";
-  feedbackEL.setAttribute("class", "hide");
+    // hide the start-screen, unhide the questions screen
+    startScreen.setAttribute("class", "hide");
+    questionsScreen.setAttribute("class", "");
     
-  // codes for rendering the question sets
-  questionsIndex++;
-    // renders the first question
-  if (questionsIndex < questions.length) {
-    document.querySelector("#question-title").textContent = questions[questionsIndex].question;
-    // render the first question's answers
-    for (let i = 0; i < questions[questionsIndex].choices.length; i++) {
-    choice = questions[questionsIndex].choices[i];
-    let button = document.createElement("button");
-    button.textContent = choice;
-    button.setAttribute("data-index", i);
-    ol.appendChild(button);
-    }
-
-    let userAnswer = parseInt(event.target.getAttribute("data-index"));
-
-    // codes for answer feedback and time penalty
-    if (questionsIndex != 0) {
-    feedbackEL.setAttribute("class", "feedback");
-    }
-    
-    if(userAnswer === questions[questionsIndex].correctAnswer) {
-      feedbackEL.innerHTML = "Correct!";
-    } else if (questionsIndex != 0) {
-      feedbackEL.innerHTML = "Wrong!"
-      timeLeft -= 10;
-    }
-    feedbackTimer();
-   
-  } else {
-      endQuiz();
-    }
-
+    // renders the first question and choices
+    renderQuestionSets();
   }
 })
 
-// if user clicks on start quiz, countdown timer starts
+// Events when clicked on choices, 
+questionsScreen.addEventListener("click", function(event) {
+  if(event.target.matches("button") && questionsIndex < questions.length-1) {
+    
+    // clears the previous questions' choices
+    olEL.innerHTML = "";
+    
+    // clears feedback for the question preceding the last
+    feedbackEL.setAttribute("class", "hide");
+    
+    questionsIndex++;
+    renderQuestionSets();
+    renderFeedback();
+
+    // end quiz after the last question
+  } else {
+      endQuiz();
+  }
+})
+
+// Quiz timer
 timerEL = document.querySelector('#time');
 startScreen.addEventListener("click", function(event) {
   if(event.target.matches("button")) {
@@ -98,7 +84,37 @@ startScreen.addEventListener("click", function(event) {
   }
 })
 
-// function: render feedback
+// function: render question sets
+function renderQuestionSets() {
+  document.querySelector("#question-title").textContent = questions[questionsIndex].question;
+  for (let i = 0; i < questions[questionsIndex].choices.length; i++) {
+    choice = questions[questionsIndex].choices[i];
+    let button = document.createElement("button");
+    button.textContent = choice;
+    button.setAttribute("data-index", i);
+    ol.appendChild(button);
+  }
+}
+
+// function: feedback (and penalty)
+function renderFeedback() {
+  let userAnswer = parseInt(event.target.getAttribute("data-index"));
+
+  // shows feedback for the previous question
+  if (questionsIndex != 0) {
+  feedbackEL.setAttribute("class", "feedback");
+  }
+
+  if(userAnswer === questions[questionsIndex-1].correctAnswer) {
+    feedbackEL.innerHTML = "Correct!";
+  } else if (questionsIndex != 0) {
+    feedbackEL.innerHTML = "Wrong!"
+    timeLeft -= 10;
+  }
+  feedbackTimer();
+}
+
+// function: limits feedback rendering to one second
 function feedbackTimer() {
   let feedbackTimeLeft = 1;
   let feedbackTimeInterval = setInterval(function () {
