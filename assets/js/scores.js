@@ -2,7 +2,13 @@ let clearHighScore = document.querySelector("#clear");
 let highScoresEL = document.querySelector("#highscores");
 let highScoresList = JSON.parse(localStorage.getItem("highScores"))
 
-renderHighscores();
+// render highscores
+for (let i = 0; i < highScoresList.length; i++) {
+let renderScore = highScoresList[i].userInitials + " - " + highScoresList[i].userScore;
+let li = document.createElement("li");
+li.textContent = renderScore;
+highScoresEL.appendChild(li);
+}
 
 // clear highscores
 clearHighScore.addEventListener("click", function(event) {
@@ -12,12 +18,3 @@ clearHighScore.addEventListener("click", function(event) {
         highScoresEL.innerHTML = "";
     }
 })
-
-// render highscores
-function renderHighscores() {
-    for (let i = 0; i < highScoresList.length; i++) {
-    let renderScore = highScoresList[i].userInitials + " - " + highScoresList[i].userScore;
-    let li = document.createElement("li");
-    li.textContent = renderScore;
-    highScoresEL.appendChild(li);
-}}
