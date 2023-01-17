@@ -134,8 +134,8 @@ function feedbackTimer() {
 
 // ends the quiz: hides the questions screen and unhide the end screen
 function endQuiz() {
-  localStorage.setItem("score",JSON.stringify(timeLeft));
   finalScore.textContent = timeLeft;
+  localStorage.setItem("score",JSON.stringify(finalScore.value));
   questionsScreen.setAttribute("class", "hide");
   endScreen.setAttribute("class", "");
 }
