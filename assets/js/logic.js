@@ -139,8 +139,7 @@ function endQuiz() {
   endScreen.setAttribute("class", "");
 }
 
-let highScoresList = JSON.parse(localStorage.getItem("highScores")) || [];
-let score = JSON.parse(localStorage.getItem("score"));
+
 
 // end-screen codes
 submitInitials.addEventListener("click", function(event) {
@@ -149,14 +148,16 @@ submitInitials.addEventListener("click", function(event) {
   // saves user initials to local storage
   localStorage.setItem("userInitials",JSON.stringify(initialsEL.value.trim()));
   
-  let initials = JSON.parse(localStorage.getItem("userInitials"));
-
-  // saves initials and score into highscores array in local storage
-  let highScoreObject = {userInitials: initials, userScore: score};
-  highScoresList.push(highScoreObject);
-  localStorage.setItem("highScores",JSON.stringify(highScoresList));
-
   // redirect to highscores page upon clicking on "submit"
   window.location.href = "./highscores.html";
 })
 
+let highScoresList = JSON.parse(localStorage.getItem("highScores")) || [];
+
+let initials = JSON.parse(localStorage.getItem("userInitials"));
+let score = JSON.parse(localStorage.getItem("score"));
+
+// saves initials and score into highscores array in local storage
+let highScoreObject = {userInitials: initials, userScore: score};
+highScoresList.push(highScoreObject);
+localStorage.setItem("highScores",JSON.stringify(highScoresList));
