@@ -157,11 +157,3 @@ submitInitials.addEventListener("click", function(event) {
   // redirect to highscores page upon clicking on "submit"
   window.location.href = "./highscores.html";
 })
-
-
-
-
-
-
-// saves initials and score into highscores array in local storage
-
