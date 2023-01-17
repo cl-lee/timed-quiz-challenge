@@ -23,6 +23,7 @@ let finalScore = document.querySelector("#final-score");
 let submitInitials = document.querySelector("#submit");
 let questionsIndex = 0;
 let timeLeft = 90;
+let highScoresList = JSON.parse(localStorage.getItem("highScores")) || [];
 
 // CODES FOR USER INTERACTION
 // create an ordered list for containing the question choices
@@ -133,7 +134,7 @@ function feedbackTimer() {
 
 // ends the quiz: hides the questions screen and unhide the end screen
 function endQuiz() {
-  localStorage.setItem("score",timeLeft);
+  localStorage.setItem("score",JSON.stringify(timeLeft));
   finalScore.textContent = timeLeft;
   questionsScreen.setAttribute("class", "hide");
   endScreen.setAttribute("class", "");
@@ -145,19 +146,22 @@ function endQuiz() {
 submitInitials.addEventListener("click", function(event) {
   event.preventDefault();
   
-  // saves user initials to local storage
+  // saves user initials and scores to local storage
   localStorage.setItem("userInitials",JSON.stringify(initialsEL.value.trim()));
+  let initials = JSON.parse(localStorage.getItem("userInitials"));
+  let score = JSON.parse(localStorage.getItem("score"));
+  let highScoreObject = {userInitials: initials, userScore: score};
+  highScoresList.push(highScoreObject);
+  localStorage.setItem("highScores",JSON.stringify(highScoresList));
   
   // redirect to highscores page upon clicking on "submit"
   window.location.href = "./highscores.html";
 })
 
-let highScoresList = JSON.parse(localStorage.getItem("highScores")) || [];
 
-let initials = JSON.parse(localStorage.getItem("userInitials"));
-let score = JSON.parse(localStorage.getItem("score"));
+
+
+
 
 // saves initials and score into highscores array in local storage
-let highScoreObject = {userInitials: initials, userScore: score};
-highScoresList.push(highScoreObject);
-localStorage.setItem("highScores",JSON.stringify(highScoresList));
+

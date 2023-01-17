@@ -35,4 +35,8 @@ A web browser is required to access the application.
     ![Quiz completed - the final score page](./assets/README/end-screen.png)
 
 - ### Highscores
-    After submitting the participant's initials and scores, the Highscores page will be accessed.
+    After submitting the participant's initials and scores, the page will be redirected to the Highscores page.
+    - Users can view their saved highscores here
+    - They can go back to the quiz start page with the "Go Back" button
+    - The highscores can be cleared with the "Clear Highscores" button
+    ![The Highscores page](./assets/README/highscores.png)
