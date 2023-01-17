@@ -1,31 +1,38 @@
 # Timed Quiz Challenge
 ## Description
-Welcome to my [Timed Quiz Challenge](https://cl-lee.github.io/timed-quiz-challenge/) repo! This is a project for a maths quiz challenge.
+Welcome to my [Timed Quiz Challenge](https://cl-lee.github.io/timed-quiz-challenge/) repo! This project features a timed quiz challenge, which contains ten maths problems to solve within 90 seconds. 
 
-The challenge features ten mathematical multiple-choice questions. This is a timed quiz; challengers has 90 seconds to attempt the quiz. Each incorrect answer will deduct 10 seconds from the remaining time. Challengers can record their remaining time at the end of the challenge as their score.
+The quiz comes in the form of multiple choice questions, each question comes with four answers to choose from. Challengers have 90 seconds to complete the quiz. They will be given one attempt to solve each question, and there is a 10 seconds penalty for each incorrect answer. At the end of the quiz, challengers can record the remaining time as their score in the highscores board. Speed and accuracy are the keys!
 
 ## Prerequisites
 A web browser is required to access the application.
 
 ## Usage
-The application can be accessed through the following URL: https://cl-lee.github.io/timed-quiz-challenge/ 
-![The Quiz start page](./assets/landing-page.png)  
+- ### Application link
+    The application can be accessed through the following URL: https://cl-lee.github.io/timed-quiz-challenge/.  
+    ![The Quiz start page](./assets/README/start-screen.png)  
 
-### Generate a password
-- To generate the password, users can click on the "Generate Password" button 
-![The "Generate Password" button](./assets/generate-password.png)
+- ### Start the quiz
+    To start the quiz, users can click on the "Start Quiz" button  
+    ![The "Start Quiz" button](./assets/README/start-quiz.png)
 
-### Select password criteria
-- The application will then present prompts to users to determine the password criteria. 
+- ### Time left
+    After starting the quiz, the countdown timer will start. The timer can be found on the top right corner of the quiz questions page.  
+    ![The quiz timer](./assets/README/quiz-timer.png)
 
-    #### 1. Password length
-    Firstly, users will have to enter a numeric value to determine the password length. The password length can be between 10 to 64 characters.
-    ![The password length prompt](./assets/password-length.png)
-    - The application will notify the users if an invalid value is entered (anything besides a number from 10 to 64). Users can enter the password length again after confirming the alert.
-    ![Alert! An invalid password length is entered](./assets/invalid-password-length.png)
+- ### Answering the questions
+    Challengers can click on one of the four choices to answer a question. Clicking of any of the four choices will lead to the next question.  
+    ![The question choices](./assets/README/choices.png)
 
-    #### 2. Character types
-    The application will then present a prompt for each of the four character types; each prompt will ask users if they would like to include the captioned character type. 
-    ![Character type prompts](./assets/character-types.png)
-    - The application will notify users if they chose not to include at least one character type. Users can then select which character type to include again after confirming the alert.
-    ![Alert! No character type was selected](./assets/character-type-error.png)
+- ### Answers feedback
+    After answering a question, a feedback will be displayed in the next page to indicate if the question was answered correctly. The feedback will render briefly under the question choices.   
+    - A "***Correct!***" message will be displayed for correct answers  
+    - A "***Wrong!***" message will be displayed for incorrect answers  
+    ![The question feedback](./assets/README/feedback.png)
+
+- ### Quiz completed
+    After answering all the questions, the participant will be redirected to the end screen page with their final score displayed. Participants can save their scores by entering their initials and clicking on the "submit" button.
+    ![Quiz completed - the final score page](./assets/README/end-screen.png)
+
+- ### Highscores
+    After submitting the participant's initials and scores, the Highscores page will be accessed.
