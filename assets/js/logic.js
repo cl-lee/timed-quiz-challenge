@@ -12,29 +12,23 @@ let questions = [
     {question: "What is the remainder of 12 ÷ 6?", choices: ["a. 2", "b. 0", "c. 1", "d. 6"], correctAnswer: 1},
 ]
 
-// DEFINE VARIABLES
-let startScreen = document.querySelector("#start-screen");
-let questionsScreen = document.querySelector("#questions");
-let endScreen = document.querySelector("#end-screen");
-let choicesEL = document.querySelector("#choices");
-let feedbackEL = document.querySelector("#feedback");
-let initialsEL = document.querySelector("#initials");
-let finalScore = document.querySelector("#final-score");
-let submitInitials = document.querySelector("#submit");
-let questionsIndex = 0;
-let timeLeft = 90;
-let highScoresList = JSON.parse(localStorage.getItem("highScores")) || [];
 
 // CODES FOR USER INTERACTION
+
+// define questions index
+let questionsIndex = 0;
+
 // create an ordered list for containing the question choices
+let choicesEL = document.querySelector("#choices");
 let ol = document.createElement("ol");         
 choicesEL.appendChild(ol)
 let olEL = document.querySelector("ol");
 
 // Event listener for clicking on the "Start Quiz" button
+let startScreen = document.querySelector("#start-screen");
 startScreen.addEventListener("click", function(event) {
   if(event.target.matches("button")) {
-        
+    
     // hide the start-screen, unhide the questions screen
     startScreen.setAttribute("class", "hide");
     questionsScreen.setAttribute("class", "");
@@ -44,7 +38,8 @@ startScreen.addEventListener("click", function(event) {
   }
 })
 
-// Events when clicked on choices
+// Event listener when clicked on answer choices
+let questionsScreen = document.querySelector("#questions");
 questionsScreen.addEventListener("click", function(event) {
   event.preventDefault();
   if(event.target.matches("button") && questionsIndex < questions.length-1) {
@@ -55,18 +50,19 @@ questionsScreen.addEventListener("click", function(event) {
     questionsIndex++;
     renderQuestionSets();
     renderFeedback();
-
+    
   } else if (!event.target.matches("button")) { 
-
+    
   } else {
-      // end quiz after the last question
-      questionsIndex++;
-      renderFeedback();
-      endQuiz();
+    // end quiz after the last question
+    questionsIndex++;
+    renderFeedback();
+    endQuiz();
   }
 })
 
 // Quiz timer
+let timeLeft = 90;
 timerEL = document.querySelector('#time');
 startScreen.addEventListener("click", function(event) {
   if(event.target.matches("button")) {
@@ -76,11 +72,10 @@ startScreen.addEventListener("click", function(event) {
       
       // display the time left
       timerEL.textContent = timeLeft;        
-
+      
       // stops timer when times up or completed all questions
       if (timeLeft <= 0 || questionsIndex === questions.length) {
         clearInterval(timerInterval);
-        timerEL.textContent = 0;
         endQuiz();
       }
     }, 1000);
@@ -100,14 +95,14 @@ function renderQuestionSets() {
 }
 
 // function: render feedback (and enable penalty)
+let feedbackEL = document.querySelector("#feedback");
 function renderFeedback() {
   let userAnswer = parseInt(event.target.getAttribute("data-index"));
   
   // shows feedback for the previous question
   if (questionsIndex != 0) {
-  feedbackEL.setAttribute("class", "feedback");
+    feedbackEL.setAttribute("class", "feedback");
   }
-
   if(userAnswer === questions[questionsIndex-1].correctAnswer) {
     feedbackEL.innerHTML = "Correct!";
   } else if (questionsIndex != 0) {
@@ -123,7 +118,7 @@ function feedbackTimer() {
   let feedbackTimeInterval = setInterval(function () {
     //subtract from time left
     feedbackTimeLeft--;
-
+    
     // hides feedback and stop feedback timer after display time is up
     if (feedbackTimeLeft === 0) {
       clearInterval(feedbackTimeInterval);
@@ -132,7 +127,9 @@ function feedbackTimer() {
   },1000);
 }
 
-// ends the quiz: hides the questions screen and unhide the end screen
+// function: ends the quiz
+let finalScore = document.querySelector("#final-score");
+let endScreen = document.querySelector("#end-screen");
 function endQuiz() {
   finalScore.textContent = timeLeft;
   localStorage.setItem("score",finalScore.value);
@@ -140,9 +137,10 @@ function endQuiz() {
   endScreen.setAttribute("class", "");
 }
 
-
-
-// end-screen codes
+// end-screen events
+let initialsEL = document.querySelector("#initials");
+let submitInitials = document.querySelector("#submit");
+let highScoresList = JSON.parse(localStorage.getItem("highScores")) || [];
 submitInitials.addEventListener("click", function(event) {
   event.preventDefault();
   
