@@ -132,7 +132,7 @@ let finalScore = document.querySelector("#final-score");
 let endScreen = document.querySelector("#end-screen");
 function endQuiz() {
   finalScore.textContent = timeLeft;
-  localStorage.setItem("score",finalScore.value);
+  localStorage.setItem("score",timeLeft);
   questionsScreen.setAttribute("class", "hide");
   endScreen.setAttribute("class", "");
 }
@@ -142,7 +142,7 @@ let initialsEL = document.querySelector("#initials");
 let submitInitials = document.querySelector("#submit");
 let highScoresList = JSON.parse(localStorage.getItem("highScores")) || [];
 submitInitials.addEventListener("click", function(event) {
-  event.preventDefault();
+  if(event.target.matches("button")) {
   
   // saves user initials and scores to local storage
   localStorage.setItem("userInitials",JSON.stringify(initialsEL.value.trim()));
@@ -154,4 +154,5 @@ submitInitials.addEventListener("click", function(event) {
   
   // redirect to highscores page upon clicking on "submit"
   window.location.href = "./highscores.html";
+  }
 })
